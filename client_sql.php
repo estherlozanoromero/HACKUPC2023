@@ -2,6 +2,22 @@
 <html>
 <head>
     <title>Current Question</title>
+    <style>
+        /* Define styles for responsiveness */
+        @media (max-width: 600px) {
+            /* Styles for smaller devices */
+            .question-container {
+                width: 90%;
+            }
+        }
+
+        @media (min-width: 601px) {
+            /* Styles for larger devices */
+            .question-container {
+                width: 60%;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php

@@ -24,31 +24,35 @@ function getQuestion($id) {
 	$stmt = $db->query($sql);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);	
-        print_r($row);
-        //$question = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        
-	
-        //echo($question);
-	//return [
-	//	'text' => 'What is the capital of France?',
-	//	'type' => 'multiple_choice',
-	//	'options' => [
-	//		'A' => 'Paris',
-	//		'B' => 'London',
-	//		'C' => 'New York',
-	//		'D' => 'Tokyo'
-	//	],
-	//	'correct_answer' => 'A'
-	//];
+
+	return $row;
 }
 
 function displayMultipleChoiceQuestion($question) {
-	echo "<h2>Multiple Choice Question</h2>";
-	echo "<ul>";
-	//foreach ($question['options'] as $option => $text) {
-	//	echo "<li>$option. $text</li>";
-	//}
-	echo "</ul>";
+
+	echo "<div class='question-container'>";
+        	echo "<h2>Question:</h2>";
+        	echo "<img src='image.jpg' alt='Question Image' width='100%'>";
+	
+        	echo "<form action='check_answer.php' method='post'>";
+        	echo "<h3>Select the correct answer:</h3>";
+        	echo "<input type = 'hidden' name='id' value = '1'>";
+	
+        	echo "<input type='radio' name='answer' value='option1'>";
+        	echo "<label for='option1'>Option 1</label><br>";
+	
+        	echo "<input type='radio' name='answer' value='option2'>";
+        	echo "<label for='option2'>Option 2</label><br>";
+
+        	echo "<input type='radio' name='answer' value='option3'>";
+        	echo "<label for='option3'>Option 3</label><br>";
+
+        	echo "<input type='radio' name='answer' value='option4'>";
+        	echo "<label for='option4'>Option 4</label><br>";
+
+        	echo "<input type='submit' value='Submit'>";
+        	echo "</form>";
+    	echo "</div>";
 }
 
 function displayTrueFalseQuestion($question) {
