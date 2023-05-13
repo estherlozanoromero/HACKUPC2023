@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Question Page</title>
+    </head>
+    <body>
+        <h1>Question Page</h1>
+        <p id="question">Loading question...</p>
+
+        <script>
+            const ws = new WebSocket('ws://localhost:8080');
+		ws.onmessage = function(event) {
+			const questionId = event.data;
+			const question = getQuestionById(questionId);
+		document.getElementById('question').textContent = question;
+		};
+        function getQuestionById(questionId) {
+            // Make an AJAX request to your server to get the question text based on its ID
+            // You'll need to write the server-side PHP code to handle this request
+        }
+    	</script>
+    </body>
+</html>
