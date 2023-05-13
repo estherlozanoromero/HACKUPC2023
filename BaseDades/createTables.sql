@@ -23,4 +23,11 @@ create table Question (id int,
 
 create table Travel (id int, 
 			name varchar(50),
+			start_time time,
+			end_time time,
 			primary key(id));
+
+drop table Answer ;
+drop table Player;
+drop table Question;
+drop table Travel;
