@@ -1,9 +1,10 @@
 <?php
 	require 'functions.php';
-	$currentId = getCurrentQuestionId();
-	//echo("AAA");
+	require_once('db_connection.php');
+	$currentId = getCurrentQuestionId($conn);
+	//echo($conn);
 	//echo($currentId);
-	$question = getQuestion($currentId);
+	$question = getQuestion($currentId, $conn);
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +15,9 @@
 <body>
 	<h1>Current Question</h1>
 	<?php 
-	if ($question['type'] == 1) {
-		displayMultipleChoiceQuestion($question);
-	} else if ($question['type'] == 2) {
+	if ($question['type_question'] == 1) {
+		displayMultipleChoiceQuestion($question, $conn);
+	} else if ($question['type_question'] == 2) {
 		displayTrueFalseQuestion($question);
 	} else {
 		echo "Unknown question type";
