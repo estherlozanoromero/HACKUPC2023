@@ -55,8 +55,6 @@ function getRestAnswer($id, $category, $conn){
 function displayMultipleChoiceQuestion($question, $conn) {
 	$answer = getAnswer($question['id_correct_answer'], $conn);
 	$arr = array($answer['answer'], $question['id_correct_answer']);
-	echo $arr[0];
-	echo $array;
     	$other_answer = getRestAnswer($question['id_correct_answer'], $question['category'], $conn);
     	
     	//echo $answer['answer'];
@@ -71,12 +69,11 @@ function displayMultipleChoiceQuestion($question, $conn) {
 	echo "<div class='question-container'>";
 		echo "<h1>" . $question['country'] . "</h1>";
         	echo "<h2>" . $question['question'] . ":</h2>";
-        	echo "<img src='image.jpg' alt='Question Image' width='100%'>";
+        	echo "<img src='". $question['path'] . "' alt='Question Image' width='100%'>";
 	
         	echo "<form action='check_answer.php' method='post'>";
         	echo "<h3>Select the correct answer:</h3>";
         	echo "<input type = 'hidden' name='id' value = '" . $question['id_correct_answer'] . " '>";
-        	echo $other_answer[0][1];
 	
         	echo "<input type='radio' name='answer' value='".$other_answer[0][1]."'>";
         	echo "<label for='option1'>". $other_answer[0][0] ."</label><br>";
