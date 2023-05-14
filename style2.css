@@ -2,20 +2,31 @@ h1 {
     color: black;
     text-align: center;
     font-family: "Open Sans Rounded", sans-serif; 
-    font-size: 70px;
+    font-size: 2em;
 }
 
 body {
+    background-image: url('BaseDades/IMAGES/Background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-size: 1em;
 	justify-content: center;
 }
 
+
+/*body {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+	justify-content: center;
+}
+*/
 th {
     color: black;
     text-align: center;
     font-family: "Open Sans Rounded", sans-serif; 
-    font-size: 30px;
+    font-size: 1em;
 }
 
 id {
@@ -24,13 +35,12 @@ id {
     justify-content: center;
     align-items: center;
     font-family: "Open Sans Rounded", sans-serif; 
-    font-size: 30px;
+    font-size: 1em;
 }
 
 /*Scroll Ranking*/
 .container {
-            height: 200px;
-            overflow-y: scroll;
+            height: 20em;
             display: flex;
   			justify-content: center;
   			align-items: center;
@@ -40,7 +50,7 @@ id {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 5vh;
 }
 
 

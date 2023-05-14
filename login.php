@@ -10,11 +10,7 @@ if(isset($_SESSION['Auth']) && $_SESSION['Auth'] == "SI"){
     <h1>Vueling Adventures</h1>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-image: url('<?php echo $ruta_imagen; ?>');
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container">
