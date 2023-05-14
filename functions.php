@@ -35,17 +35,15 @@ function getAnswer($id, $conn){
 }
 
 function getRestAnswer($id, $category, $conn){
-	$sql = "SELECT answer, id FROM Answer WHERE id != $id AND category = $category";
+	$sql = "SELECT answer, id FROM Answer WHERE id != $id AND category = '$category'";
 	
 	$arr = array();
-
     	foreach($conn->query($sql) as $row) {
-
+		
   		array_push($arr, array($row['answer'], $row['id']));
   	}
-
 	shuffle($arr);
-
+	
 	$arr = array_slice( $arr, 0, 3);
 	
 	return $arr;
@@ -69,7 +67,7 @@ function displayMultipleChoiceQuestion($question, $conn) {
 	echo "<div class='question-container'>";
 		echo "<h1>" . $question['country'] . "</h1>";
         	echo "<h2>" . $question['question'] . ":</h2>";
-        	echo "<img src='". $question['path'] . "' alt='Question Image' width='100%'>";
+        	echo "<img src='"."./BaseDades/IMAGES/". $question['path'] . "' alt='Question Image' width='100%'>";
 	
         	echo "<form action='check_answer.php' method='post'>";
         	echo "<h3>Select the correct answer:</h3>";
