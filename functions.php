@@ -1,58 +1,96 @@
 <?php
+function getCurrentQuestionId($conn) {
 
+	$sql = "SELECT question_id FROM current_question1 WHERE id = 1";
+	$result = $conn->query($sql);
+	$result = $result->fetch_assoc();
+	$currentQuestionId = $result['question_id'];
 
-function getCurrentQuestionId() {
-	// code to retrieve current question ID from database
-	$db = new PDO('mysql:host=localhost;dbname=hack11;charset=utf8', 'user', 'password');
-
-	$stmt = $db->query('SELECT question_id FROM current_question WHERE id = 1');
-        $currentQuestionId = $stmt->fetch(PDO::FETCH_COLUMN);
-	//echo($currentQuestionId);
 
 	return $currentQuestionId;
 	
 }
 
-function getQuestion($id) {
+function getQuestion($id, $conn) {
 	// code to retrieve question from database based on $id
-	echo($id);
-	$db = new PDO('mysql:host=localhost;dbname=hack11;charset=utf8', 'user', 'password');
 	
-	$sql = "SELECT * FROM questions WHERE id = $id";
-	//$sql->bindValue(':questionId', $id, PDO::PARAM_INT);
-	echo($sql);
-	$stmt = $db->query($sql);
+	$sql = "SELECT * FROM Question WHERE id = $id";
+	
+	$result = $conn->query($sql);
+	$result = $result->fetch_assoc();
+	
+	return $result;
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);	
-
-	return $row;
 }
 
-function displayMultipleChoiceQuestion($question) {
+function getAnswer($id, $conn){
+
+	
+	$sql = "SELECT answer FROM Answer WHERE id = $id";
+	
+	$result = $conn->query($sql);
+	$result = $result->fetch_assoc();
+	
+	return $result;
+}
+
+function getRestAnswer($id, $category, $conn){
+	$sql = "SELECT answer, id FROM Answer WHERE id != $id AND category = $category";
+	
+	$arr = array();
+
+    	foreach($conn->query($sql) as $row) {
+
+  		array_push($arr, array($row['answer'], $row['id']));
+  	}
+
+	shuffle($arr);
+
+	$arr = array_slice( $arr, 0, 3);
+	
+	return $arr;
+
+}
+
+function displayMultipleChoiceQuestion($question, $conn) {
+	$answer = getAnswer($question['id_correct_answer'], $conn);
+	$arr = array($answer['answer'], $question['id_correct_answer']);
+    	$other_answer = getRestAnswer($question['id_correct_answer'], $question['category'], $conn);
+    	
+    	//echo $answer['answer'];
+    	
+    	//foreach($ohter_answer as $row){
+    	array_push($other_answer, $arr);
+ 	
+    	
+    	
+    	shuffle($other_answer);
 
 	echo "<div class='question-container'>";
-        	echo "<h2>Question:</h2>";
-        	echo "<img src='image.jpg' alt='Question Image' width='100%'>";
+		echo "<h1>" . $question['country'] . "</h1>";
+        	echo "<h2>" . $question['question'] . ":</h2>";
+        	echo "<img src='". $question['path'] . "' alt='Question Image' width='100%'>";
 	
         	echo "<form action='check_answer.php' method='post'>";
         	echo "<h3>Select the correct answer:</h3>";
-        	echo "<input type = 'hidden' name='id' value = '1'>";
+        	echo "<input type = 'hidden' name='id' value = '" . $question['id_correct_answer'] . " '>";
 	
-        	echo "<input type='radio' name='answer' value='option1'>";
-        	echo "<label for='option1'>Option 1</label><br>";
+        	echo "<input type='radio' name='answer' value='".$other_answer[0][1]."'>";
+        	echo "<label for='option1'>". $other_answer[0][0] ."</label><br>";
 	
-        	echo "<input type='radio' name='answer' value='option2'>";
-        	echo "<label for='option2'>Option 2</label><br>";
+        	echo "<input type='radio' name='answer' value='".$other_answer[1][1]."'>";
+        	echo "<label for='option2'>". $other_answer[1][0] ."</label><br>";
 
-        	echo "<input type='radio' name='answer' value='option3'>";
-        	echo "<label for='option3'>Option 3</label><br>";
+        	echo "<input type='radio' name='answer' value='".$other_answer[2][1]."'>";
+        	echo "<label for='option3'>". $other_answer[2][0] ."</label><br>";
 
-        	echo "<input type='radio' name='answer' value='option4'>";
-        	echo "<label for='option4'>Option 4</label><br>";
+        	echo "<input type='radio' name='answer' value='".$other_answer[3][1]."'>";
+        	echo "<label for='option4'>". $other_answer[3][0] ."</label><br>";
 
         	echo "<input type='submit' value='Submit'>";
         	echo "</form>";
     	echo "</div>";
+    	
 }
 
 function displayTrueFalseQuestion($question) {
