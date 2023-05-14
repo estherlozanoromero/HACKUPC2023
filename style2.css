@@ -1,0 +1,75 @@
+h1 {
+    color: black;
+    text-align: center;
+    font-family: "Open Sans Rounded", sans-serif; 
+    font-size: 70px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+	justify-content: center;
+}
+
+th {
+    color: black;
+    text-align: center;
+    font-family: "Open Sans Rounded", sans-serif; 
+    font-size: 30px;
+}
+
+id {
+    color: black;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans Rounded", sans-serif; 
+    font-size: 30px;
+}
+
+/*Scroll Ranking*/
+.container {
+            height: 200px;
+            overflow-y: scroll;
+            display: flex;
+  			justify-content: center;
+  			align-items: center;
+        }
+.cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.btn {
+    background-color: #ffcc00;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    
+    
+}
+
+.input-group {
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+#timer {
+  margin-top: 20px; /* Add margin at the top of the timer */
+}
+
+
+
