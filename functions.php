@@ -71,7 +71,7 @@ function displayMultipleChoiceQuestion($question, $conn) {
 	
         	echo "<form action='check_answer.php' method='post'>";
         	echo "<h3>Select the correct answer:</h3>";
-        	echo "<input type = 'hidden' name='id' value = '" . $question['id_correct_answer'] . " '>";
+        	echo "<input type = 'hidden' name='id' value = '" . $question['id_correct_answer'] . "'>";
 	
         	echo "<input type='radio' name='answer' value='".$other_answer[0][1]."'>";
         	echo "<label for='option1'>". $other_answer[0][0] ."</label><br>";
